@@ -117,4 +117,8 @@ require("packer").startup(function(use)
 		run = function() vim.fn["mkdp#util#install"]() end,
 	})
 
+	use({
+		'kamykn/spelunker.vim',
+	})
+
 end)
