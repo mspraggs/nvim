@@ -10,5 +10,9 @@ vim.o.colorcolumn = "80,100"
 
 vim.o.spell = false
 
+vim.o.textwidth = 80
+
+vim.opt.clipboard = "unnamedplus"
+
 vim.cmd[[colorscheme tokyonight-night]]
 
