@@ -129,4 +129,8 @@ require("packer").startup(function(use)
 		end,
 	})
 
+	use({
+		'Vimjas/vim-python-pep8-indent',
+	})
+
 end)
