@@ -133,4 +133,11 @@ require("packer").startup(function(use)
 		'Vimjas/vim-python-pep8-indent',
 	})
 
+	use({
+		'ray-x/go.nvim',
+		config = function()
+			require('go').setup()
+		end,
+	})
+
 end)
