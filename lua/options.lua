@@ -13,6 +13,7 @@ vim.o.spell = false
 vim.o.textwidth = 80
 
 vim.opt.clipboard = "unnamedplus"
+vim.wo.relativenumber = true
 
 vim.cmd[[colorscheme tokyonight-night]]
 
