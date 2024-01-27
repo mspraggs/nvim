@@ -140,4 +140,8 @@ require("packer").startup(function(use)
 		end,
 	})
 
+	use({
+		'airblade/vim-gitgutter',
+	})
+
 end)
