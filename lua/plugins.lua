@@ -144,4 +144,11 @@ require("packer").startup(function(use)
 		'airblade/vim-gitgutter',
 	})
 
+	use ({
+		'RaafatTurki/hex.nvim',
+		config = function()
+			require('hex').setup()
+		end,
+	})
+
 end)
