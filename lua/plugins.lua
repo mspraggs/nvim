@@ -134,13 +134,6 @@ require("packer").startup(function(use)
 	})
 
 	use({
-		'ray-x/go.nvim',
-		config = function()
-			require('go').setup()
-		end,
-	})
-
-	use({
 		'airblade/vim-gitgutter',
 	})
 
