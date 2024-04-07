@@ -12,6 +12,8 @@ require("packer").startup(function(use)
 	-- Packer can manage itself
 	use "wbthomason/packer.nvim"
 
+	use "nvim-lua/plenary.nvim"
+
 	use {
 		"nvim-telescope/telescope.nvim", tag = "0.1.3",
 		requires = {"nvim-lua/plenary.nvim"},
@@ -170,5 +172,14 @@ require("packer").startup(function(use)
 			}
 		end
 	})
+
+	use {
+		"ThePrimeagen/harpoon",
+		branch = "harpoon2",
+		requires = { { "nvim-lua/plenary.nvim" } },
+		config = function ()
+			require('plugins.harpoon')
+		end
+	}
 
 end)
