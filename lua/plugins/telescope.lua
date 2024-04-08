@@ -8,4 +8,4 @@ vim.keymap.set('n', '<leader>fp', builtin.git_files, {})
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fs', builtin.lsp_dynamic_workspace_symbols, {})
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-
+vim.keymap.set('n', '<leader>fo', ':Telescope oldfiles<CR>', { noremap = true, silent = true })
