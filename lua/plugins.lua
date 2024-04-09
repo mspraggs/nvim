@@ -182,4 +182,9 @@ require("packer").startup(function(use)
 		end
 	}
 
+	use {
+		'marcuscaisey/please.nvim',
+		requires = { 'nvim-treesitter/nvim-treesitter', 'mfussenegger/nvim-dap' }
+	}
+
 end)
