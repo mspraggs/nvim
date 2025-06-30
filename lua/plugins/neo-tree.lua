@@ -1,4 +1,4 @@
-vim.keymap.set({ 'n' }, '<leader>nf', ':Neotree toggle<CR>')
+vim.keymap.set({ 'n' }, '<leader>nf', ':Neotree toggle reveal=true<CR>')
 
 require('neo-tree').setup({
 	close_if_last_window = true,
