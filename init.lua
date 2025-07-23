@@ -1,6 +1,6 @@
 vim.loader.enable()
 
-require("plugins")
-require("remap")
-require('options')
+require("config.lazy")
+require("config.remap")
+require('config.options')
 
