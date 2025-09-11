@@ -11,18 +11,6 @@ return {
   },
 
   {
-    -- Mason bridge for nvim-lspconfig
-    "williamboman/mason-lspconfig.nvim",
-    dependencies = { "neovim/nvim-lspconfig" },
-    config = function()
-      require("mason-lspconfig").setup({
-        ensure_installed = { "gopls" }, -- auto-install servers
-        automatic_installation = true,
-      })
-    end,
-  },
-
-  {
     -- LSP core
     "neovim/nvim-lspconfig",
     dependencies = {
@@ -63,22 +51,13 @@ return {
             codelenses = {
               gc_details = true,
             },
+            staticcheck = true,
           },
         },
-        root_dir = function(fname)
-          local gowork_or_gomod_dir = util.root_pattern("go.work", "go.mod")(fname)
-          if gowork_or_gomod_dir then
-            return gowork_or_gomod_dir
-          end
+      })
 
-          local plzconfig_dir = util.root_pattern(".plzconfig")(fname)
-          if plzconfig_dir and vim.fs.basename(plzconfig_dir) == "src" then
-            vim.env.GOPATH = string.format("%s:%s/plz-out/go", vim.fs.dirname(plzconfig_dir), plzconfig_dir)
-            vim.env.GO111MODULE = "off"
-          end
-
-          return vim.fn.getcwd()
-        end,
+      lspconfig.golangci_lint_ls.setup({
+        filetypes = {'go', 'gomod'},
       })
     end,
   },
