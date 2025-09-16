@@ -52,6 +52,7 @@ return {
               gc_details = true,
             },
             staticcheck = true,
+            experimentalPostfixCompletions = false,
           },
         },
       })
