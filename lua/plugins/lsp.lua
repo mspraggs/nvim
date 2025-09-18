@@ -38,13 +38,32 @@ return {
         map("n", "<leader>e", vim.diagnostic.open_float, opts)
       end
 
+      -- This function will generate the directoryFilters for gopls
+      local function generate_directory_filters()
+        local filters = {}
+
+        local root = util.root_pattern('go.mod', '.git')(vim.fn.expand('%:p'), vim.fn.getcwd())
+        local config_path = root .. "/.gopls.lua"
+        local success, allowlist = pcall(dofile, config_path)
+        if not success or type(allowlist) ~= "table" then
+          return filters
+        end
+
+        table.insert(filters, "-")
+        for _, dir in ipairs(allowlist) do
+          table.insert(filters, "+" .. dir)
+        end
+
+        return filters
+      end
+
       -- Example: gopls setup
       lspconfig.gopls.setup({
         on_attach = on_attach,
         capabilities = capabilities,
         settings = {
           gopls = {
-            directoryFilters = { "-plz-out" },
+            directoryFilters = generate_directory_filters(),
             linksInHover = false,
             usePlaceholders = false,
             semanticTokens = true,
