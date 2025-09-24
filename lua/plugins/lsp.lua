@@ -42,7 +42,10 @@ return {
       local function generate_directory_filters()
         local filters = {}
 
-        local root = util.root_pattern('go.mod', '.git')(vim.fn.expand('%:p'), vim.fn.getcwd())
+        local root = util.root_pattern('go.mod', '.git')(vim.fn.expand('%:p'))
+        if not root then
+          return filters
+        end
         local config_path = root .. "/.gopls.lua"
         local success, allowlist = pcall(dofile, config_path)
         if not success or type(allowlist) ~= "table" then
