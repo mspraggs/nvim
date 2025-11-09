@@ -17,7 +17,6 @@ return {
       "hrsh7th/cmp-nvim-lsp",
     },
     config = function()
-      local lspconfig = require("lspconfig")
       local util = require("lspconfig.util")
 
       -- Capabilities (for nvim-cmp completion)
@@ -61,11 +60,25 @@ return {
       end
 
       -- Example: gopls setup
-      lspconfig.gopls.setup({
+      vim.lsp.config('gopls', {
         on_attach = on_attach,
         capabilities = capabilities,
         settings = {
           gopls = {
+            analyses = {
+              fieldalignment = false, -- noisy; enable if you want perf hints
+              loopclosure = true,
+              lostcancel = true,
+              nilfunc = true,
+              nilness = true,
+              printf = true,
+              shadow = true,
+              structtag = true,
+              unusedfunc = true,
+              unusedparams = true,
+              unusedresult = true,
+              unusedwrite = true,
+            },
             directoryFilters = generate_directory_filters(),
             linksInHover = false,
             usePlaceholders = false,
@@ -79,9 +92,21 @@ return {
         },
       })
 
-      lspconfig.golangci_lint_ls.setup({
-        filetypes = {'go', 'gomod'},
+      vim.lsp.config('pylsp', {
+        settings = {
+          pylsp = {
+            plugins = {
+              pycodestyle = {
+                ignore = {'W391'},
+                maxLineLength = 100
+              }
+            }
+          }
+        }
       })
+
+      vim.lsp.enable('gopls')
+      vim.lsp.enable('pylsp')
     end,
   },
 
