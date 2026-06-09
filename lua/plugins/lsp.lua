@@ -35,6 +35,14 @@ return {
         map("n", "[d", vim.diagnostic.goto_prev, opts)
         map("n", "]d", vim.diagnostic.goto_next, opts)
         map("n", "<leader>e", vim.diagnostic.open_float, opts)
+
+        if client.supports_method('textDocument/codeLens') then
+          vim.lsp.codelens.refresh()
+          vim.api.nvim_create_autocmd({ 'BufEnter', 'InsertLeave', 'BufWritePost' }, {
+            buffer = bufnr,
+            callback = vim.lsp.codelens.refresh,
+          })
+        end
       end
 
       -- This function will generate the directoryFilters for gopls
